@@ -1,4 +1,4 @@
-class Consulta:
+class Consulta():
     def __init__(self, id_consulta, paciente, procedimentos, data_consulta):
         self.id_consulta = id_consulta
         self.paciente = paciente
