@@ -1,4 +1,5 @@
 from utils.armazenamento import Armazenamento
+from utils.log import Log
 
 class Paciente:
     contador_id = 1  # Inicializa com 1; pode ser alterado com base no maior ID existente
