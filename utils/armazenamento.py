@@ -11,10 +11,10 @@ class Armazenamento():
         with open(self.arquivo_pacientes, 'a+') as f:
             f.writelines(f'{id_paciente}, {nome_paciente}, {data_nascimento}, {sexo_paciente}\n')
 
-    def obter_proximo_id_paciente(self):
+    def obter_proximo_id(self, arquivo):
     #Lê o arquivo de pacientes e retorna o próximo ID disponível.
         try:
-            with open(self.arquivo_pacientes, 'r') as f:
+            with open(arquivo, 'r') as f:
                 linhas = f.readlines()
 
             if not linhas:
@@ -23,11 +23,8 @@ class Armazenamento():
             # Extrai os IDs, converte para inteiros e retorna o próximo número na sequência.
             ids = [int(linha.split(',')[0]) for linha in linhas if linha.strip()]
             return max(ids) + 1
-        except FileNotFoundError:
+        except Exception: # FileNotFound ou ids sendo vazio
             return 1  # Caso o arquivo não exista, o primeiro ID será 1.
-
-            with open(self.arquivo_pacientes, 'a+') as f:
-                f.writelines(f'{id_paciente}, {nome_paciente}, {data_nascimento}, {sexo_paciente}')
 
     def consultar_paciente(self, id_paciente):
         '''Percorre arquivo de pacientes e retorna dados da linha correspondente ao codigo passado'''

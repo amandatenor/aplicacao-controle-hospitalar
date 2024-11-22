@@ -2,20 +2,18 @@ from utils.armazenamento import Armazenamento
 from utils.log import Log
 
 class Paciente:
-    contador_id = 1  # Inicializa com 1; pode ser alterado com base no maior ID existente
-
     def __init__(self, id_paciente=None, nome_paciente='', data_nascimento='', sexo_paciente=''):
+        self.__armazenamento = Armazenamento('out/pacientes.csv', 'out/procedimento.csv', 'out/consulta.csv')
+
         # Gerar ID em sequência para os pacientes cadastrados
         if id_paciente is None:
-            self.id_paciente = str(Paciente.contador_id)
-            Paciente.contador_id += 1
+            self.id_paciente = self.__armazenamento.obter_proximo_id(self.__armazenamento.arquivo_pacientes)
         else:
             self.id_paciente = id_paciente  # Para edição ou consulta
 
         self.nome_paciente = nome_paciente
         self.data_nascimento = data_nascimento
         self.sexo_paciente = sexo_paciente
-        self.__armazenamento = Armazenamento('out/pacientes.csv', 'out/procedimento.csv', 'out/consulta.csv')
 
     def inserirPaciente(self):
         """Insere o paciente no armazenamento."""

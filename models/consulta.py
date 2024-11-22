@@ -2,13 +2,12 @@ from utils.armazenamento import Armazenamento
 from utils.log import Log
 
 class Consulta:
-    contador_id = 1  # Inicializa com 1; pode ser alterado com base no maior ID existente
-
     def __init__(self, id_consulta=None, descricao='', paciente='', lista_procedimentos=None, data=None):
+        self.__armazenamento = Armazenamento('out/pacientes.csv', 'out/procedimento.csv', 'out/consulta.csv')
+
         # Gerar ID em sequência para as consultas cadastradas
         if id_consulta is None:
-            self.id_consulta = str(Consulta.contador_id)
-            Consulta.contador_id += 1
+            self.id_consulta = self.__armazenamento.obter_proximo_id(self.__armazenamento.arquivo_consultas)
         else:
             self.id_consulta = id_consulta  # Para edição ou consulta
 
@@ -16,7 +15,6 @@ class Consulta:
         self.paciente = paciente
         self.lista_procedimentos = lista_procedimentos if lista_procedimentos else []
         self.data = data
-        self.__armazenamento = Armazenamento('out/pacientes.csv', 'out/procedimento.csv', 'out/consulta.csv')
 
     def inserirConsulta(self):
         """Insere a consulta no armazenamento."""
