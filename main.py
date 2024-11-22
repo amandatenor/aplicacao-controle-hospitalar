@@ -49,7 +49,6 @@ class Initialize():
             confirmacao = input(f"Tem certeza de que deseja excluir o paciente com ID {id_paciente}? (s/n): ").lower()
             if confirmacao == 's':
                 p.excluirPaciente() 
-                print(f"Paciente com ID {id_paciente} foi excluído com sucesso.")
             else:
                 print("Operação de exclusão cancelada.")
         

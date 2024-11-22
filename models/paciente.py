@@ -1,4 +1,5 @@
 from utils.armazenamento import Armazenamento
+from utils.log import Log
 
 class Paciente:
     contador_id = 1  # Inicializa com 1; pode ser alterado com base no maior ID existente
@@ -39,13 +40,23 @@ class Paciente:
         self.sexo_paciente = novos_dados.get("sexo_paciente", self.sexo_paciente)
 
         # Salva as alterações no armazenamento
-        self.__armazenamento.editar_paciente(self.id_paciente, self.nome_paciente, self.data_nascimento, self.sexo_paciente)
-        print(f'Paciente {self.nome_paciente} com ID {self.id_paciente} atualizado com sucesso.')
+        if self.__armazenamento.editar_paciente(self.id_paciente, self.nome_paciente, self.data_nascimento, self.sexo_paciente):
+            print(f'Paciente {self.nome_paciente} com ID {self.id_paciente} atualizado com sucesso.')
+
+             # Registra os dados no Log
+            Log.registrar_log(f"Paciente inserido: {self.id_paciente}, {self.nome_paciente}, Data de Nascimento: {self.data_nascimento}, Sexo: {self.sexo_paciente}")
+        else:
+            print(f'Paciente com ID {self.id_paciente} nao encontrado.')
 
     def excluirPaciente(self):
         """Exclui o paciente do armazenamento."""
-        self.__armazenamento.remover_paciente(self.id_paciente)
-        print(f'Paciente com ID {self.id_paciente} foi excluído.')
+        if self.__armazenamento.remover_paciente(self.id_paciente):
+            print(f'Paciente com ID {self.id_paciente} foi excluído.')
+
+            # Registra os dados no Log
+            Log.registrar_log(f"Paciente excluído: {self.id_paciente}")
+        else:
+            print(f'Paciente com ID {self.id_paciente} não foi encontrado.' )
 
     def consultarPaciente(self):
         """Consulta as informações do paciente no armazenamento."""
