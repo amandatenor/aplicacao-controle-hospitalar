@@ -22,6 +22,7 @@ class Procedimento:
         if not all([self.nome_procedimento, self.descricao_procedimento]):
             print("Por favor, forneça todas as informações necessárias do procedimento.")
             return
+        
 
         # Salva os dados no armazenamento
         self.__armazenamento.salvar_procedimento(self.id_procedimento, self.nome_procedimento, self.descricao_procedimento)

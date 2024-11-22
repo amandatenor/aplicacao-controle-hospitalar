@@ -235,6 +235,7 @@ class Armazenamento():
             f.writelines(linhas)
 
 
+
     def remover_consulta_do_paciente(self, id_paciente):
         '''Le arquivo de consultas e remove linha que contem o
         paciente correspondente ao codigo passado'''

@@ -1,9 +1,9 @@
-from datetime import date
+from datetime import datetime
 
-arquivo_log = 'log.csv'
+arquivo_log = '\out\log.csv'
 
 class Log:
     @staticmethod
     def registrar_log(mensagem):
         with open(arquivo_log, 'a') as f:
-            f.write(f"[{date.today()}] {mensagem}\n")
+            f.write(f"[{datetime.today()}] {mensagem}\n")
