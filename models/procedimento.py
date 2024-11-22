@@ -2,19 +2,17 @@ from utils.armazenamento import Armazenamento
 from utils.log import Log
 
 class Procedimento:
-    contador_id = 1 
-
     def __init__(self, id_procedimento=None, nome_procedimento='', descricao_procedimento=''):
+        self.__armazenamento = Armazenamento('out/pacientes.csv', 'out/procedimento.csv', 'out/consulta.csv')
+
         # Gerar ID em sequência para os pacientes cadastrados
         if id_procedimento is None:
-            self.id_procedimento = str(Procedimento.contador_id)
-            Procedimento.contador_id += 1
+            self.id_procedimento = self.__armazenamento.obter_proximo_id(self.__armazenamento.arquivo_procedimentos)
         else:
             self.id_procedimento = id_procedimento  # Para edição ou consulta
 
         self.nome_procedimento = nome_procedimento
         self.descricao_procedimento = descricao_procedimento
-        self.__armazenamento = Armazenamento('out/pacientes.csv', 'out/procedimento.csv', 'out/consulta.csv')
         
     def inserirProcedimento(self):
         """Insere o procedimento no armazenamento."""
