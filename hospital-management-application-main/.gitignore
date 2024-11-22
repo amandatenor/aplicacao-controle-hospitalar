@@ -1,0 +1,3 @@
+__pycache__/
+*.pyc
+hospital-management-application-main/models/paciente.py
