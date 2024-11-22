@@ -232,10 +232,10 @@ class Armazenamento():
                 codigo = campos[0]
 
                 if codigo == id_consulta:
-                    descricao = campos[4]
-                    paciente = campos[1]
-                    lista_procedimentos = campos[2].split('|')  # Converte a string de volta para uma lista
-                    data = campos[3]
+                    descricao = campos[1]
+                    paciente = campos[2]
+                    lista_procedimentos = campos[3].split('|')  # Converte a string de volta para uma lista
+                    data = campos[4]
 
                     return descricao, paciente, lista_procedimentos, data
 
@@ -314,10 +314,15 @@ class Armazenamento():
         indices_consultas = []
 
         for i in range(len(linhas)):
-            codigo, procedimentos, paciente = linhas[i][:-1].split(',')
+            campos = [campo.strip() for campo in linhas[i].strip().split(',')]
+
+            if len(campos) < 5:
+                continue
+
+            codigo, descricao, paciente, procedimentos, data = campos
 
             if paciente == id_paciente:
-                indice_consulta.append(i)
+                indices_consultas.append(i)
 
         for indice_consulta in indices_consultas:
             del linhas[indice_consulta]
@@ -339,10 +344,14 @@ class Armazenamento():
 
         for i in range(len(linhas)):
             campos = [campo.strip() for campo in linhas[i].strip().split(',')]
-            codigo, procedimentos, paciente = campos
 
-            if id_procedimento in procedimentos.split(';'):
-                indice_consulta.append(i)
+            if len(campos) < 5:
+                continue
+
+            codigo, descricao, paciente, procedimentos, data = campos
+
+            if id_procedimento in procedimentos.split('|'):
+                indices_consultas.append(i)
 
         for indice_consulta in indices_consultas:
             del linhas[indice_consulta]
