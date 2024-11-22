@@ -56,12 +56,13 @@ class Procedimento:
         self.descricao_procedimento = novos_dados.get("descricao_procedimento", self.descricao_procedimento)
 
         # Salva as alterações no armazenamento (arquivo)
-        self.__armazenamento.editar_procedimento(self.id_procedimento, self.nome_procedimento, self.descricao_procedimento)
+        if self.__armazenamento.editar_procedimento(self.id_procedimento, self.nome_procedimento, self.descricao_procedimento):
+            print(f'Procedimento {self.nome_procedimento} com ID {self.id_procedimento} atualizado com sucesso.')
 
-        print(f'Procedimento {self.nome_procedimento} com ID {self.id_procedimento} atualizado com sucesso.')
-
-        #Registra os dados no Log 
-        Log.registrar_log(f"Procedimento editado: {self.id_procedimento}, {self.nome_procedimento}, {self.descricao_procedimento}")
+            #Registra os dados no Log 
+            Log.registrar_log(f"Procedimento editado: {self.id_procedimento}, {self.nome_procedimento}, {self.descricao_procedimento}")
+        else:
+            print(f'Procedimento com ID {self.id_procedimento} nao encontrado.')
 
         
     def excluir_procedimento(self):

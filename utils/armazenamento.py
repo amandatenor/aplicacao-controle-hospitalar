@@ -45,8 +45,7 @@ class Armazenamento():
                 sexo = campos[3]
                 return nome, data_nascimento, sexo
 
-        print('Paciente nao encontrado')
-        return None, None, None, None  
+        return None
 
 
     def editar_paciente(self, id_paciente, nome_paciente=None, data_nascimento=None, sexo_paciente=None):
@@ -83,14 +82,13 @@ class Armazenamento():
                     continue
 
         if not paciente_encontrado:
-            print(f"Paciente com ID {id_paciente} não encontrado.")
-            return
+            return False
 
         # Reescreve o arquivo com as alterações
         with open(self.arquivo_pacientes, 'w') as f:
             f.writelines(linhas)
 
-        print(f"Paciente com ID {id_paciente} atualizado com sucesso.")
+        return True
 
 
     def remover_paciente(self, id_paciente):
@@ -115,8 +113,7 @@ class Armazenamento():
 
         # Verifica se o paciente foi encontrado
         if indice_paciente is None:
-            print('Paciente não encontrado.')
-            return
+            return False
 
         # Remove a linha correspondente ao paciente
         del linhas[indice_paciente]
@@ -128,7 +125,7 @@ class Armazenamento():
         with open(self.arquivo_pacientes, 'w') as f:
             f.writelines(linhas)
 
-        print(f"Paciente com ID {id_paciente} removido com sucesso.")
+        return True
 
     def salvar_procedimento(self, id_procedimento, nome_procedimento, descricao_procedimento):
         '''Adiciona uma linha no arquivo de procedimentos'''
@@ -151,7 +148,6 @@ class Armazenamento():
                     
                     return nome, descricao # TODO: retornar classe
 
-        print('Procedimento nao encontrado')
         return None
 
           
@@ -180,9 +176,10 @@ class Armazenamento():
         if procedimento_encontrado:
             with open(self.arquivo_procedimentos, 'w') as f:
                 f.writelines(linhas)
-            print(f'Procedimento {id_procedimento} atualizado com sucesso.')
+
+            return True
         else:
-            print(f'Procedimento com ID {id_procedimento} não encontrado.')
+            return False
             
 
 
@@ -204,7 +201,6 @@ class Armazenamento():
                 break 
 
         if indice_procedimento is None:
-            print('Procedimento não encontrado.')
             return False  
 
         del linhas[indice_procedimento]
@@ -239,7 +235,6 @@ class Armazenamento():
 
                     return descricao, paciente, lista_procedimentos, data
 
-        print('Consulta não encontrada.')
         return None
 
     def editar_consulta(self, id_consulta, descricao=None, paciente=None, lista_procedimentos=None, data=None):
@@ -267,9 +262,10 @@ class Armazenamento():
         if consulta_encontrada:
             with open(self.arquivo_consultas, 'w') as f:
                 f.writelines(linhas)
-            print(f'Consulta {id_consulta} atualizada com sucesso.')
+
+            return True
         else:
-            print(f'Consulta com ID {id_consulta} não encontrada.')
+            return False
 
 
     def remover_consulta(self, codigo_consulta):
@@ -291,15 +287,14 @@ class Armazenamento():
                 indice_consulta = i
 
         if indice_consulta == None:
-            print('Consulta nao encontrada')
-            return
+            return False
 
         del linhas[indice_consulta]
 
         with open(self.arquivo_consultas, 'w') as f:
             f.writelines(linhas)
         
-        print(f'Consulta de ID {codigo_consulta} removido com sucesso')
+        return True
 
 
     def remover_consulta_do_paciente(self, id_paciente):
@@ -329,6 +324,8 @@ class Armazenamento():
 
         with open(self.arquivo_consultas, 'w') as f:
             f.writelines(linhas)
+
+        print(f'Consultas associadas ao paciente {id_paciente} foram removidas.')
 
 
     def remover_consulta_do_procedimento(self, id_procedimento):

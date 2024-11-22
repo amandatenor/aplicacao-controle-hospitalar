@@ -63,17 +63,18 @@ class Consulta:
         self.data = novos_dados.get("data", self.data)
 
         # Salva as alterações no armazenamento
-        self.__armazenamento.editar_consulta(
+        if self.__armazenamento.editar_consulta(
             self.id_consulta,
             self.descricao,
             self.paciente,
             self.lista_procedimentos,
-            self.data
-        )
-        print(f'Consulta com ID {self.id_consulta} atualizada com sucesso.')
+            self.data):
+            print(f'Consulta com ID {self.id_consulta} atualizada com sucesso.')
 
-        # Registra os dados no Log
-        Log.registrar_log(f"Consulta editada: {self.id_consulta}, {self.descricao}, Paciente: {self.paciente}, Data: {self.data}")
+            # Registra os dados no Log
+            Log.registrar_log(f"Consulta editada: {self.id_consulta}, {self.descricao}, Paciente: {self.paciente}, Data: {self.data}")
+        else:
+            print(f'Consulta com ID {self.id_consulta} nao encontrada.')
 
     def excluirConsulta(self):
         """Exclui uma consulta do armazenamento."""
