@@ -2,7 +2,7 @@ from utils.armazenamento import Armazenamento
 from utils.log import Log
 
 class Procedimento:
-    contador_id = 1  # Inicializa com 1; pode ser alterado com base no maior ID existente
+    contador_id = 1 
 
     def __init__(self, id_procedimento=None, nome_procedimento='', descricao_procedimento=''):
         # Gerar ID em sequência para os pacientes cadastrados
@@ -22,7 +22,6 @@ class Procedimento:
         if not all([self.nome_procedimento, self.descricao_procedimento]):
             print("Por favor, forneça todas as informações necessárias do procedimento.")
             return
-        
 
         # Salva os dados no armazenamento
         self.__armazenamento.salvar_procedimento(self.id_procedimento, self.nome_procedimento, self.descricao_procedimento)

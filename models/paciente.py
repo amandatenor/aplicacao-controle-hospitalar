@@ -9,7 +9,7 @@ class Paciente:
             self.id_paciente = str(Paciente.contador_id)
             Paciente.contador_id += 1
         else:
-            self.id_paciente = id_paciente 
+            self.id_paciente = id_paciente  # Para edição ou consulta
 
         self.nome_paciente = nome_paciente
         self.data_nascimento = data_nascimento
@@ -18,6 +18,7 @@ class Paciente:
 
     def inserirPaciente(self):
         """Insere o paciente no armazenamento."""
+        # Usa os atributos do próprio objeto em vez de solicitar novamente os dados
         if not all([self.nome_paciente, self.data_nascimento, self.sexo_paciente]):
             print("Por favor, forneça todas as informações necessárias do paciente.")
             return
@@ -28,7 +29,11 @@ class Paciente:
 
     def editarPaciente(self, novos_dados):
         """Edita o paciente com base nos novos dados fornecidos."""
+        if not isinstance(novos_dados, dict):
+            print("Os novos dados devem ser fornecidos como um dicionário.")
+            return
 
+        # Atualiza os atributos com base nos novos dados, se fornecidos
         self.nome_paciente = novos_dados.get("nome_paciente", self.nome_paciente)
         self.data_nascimento = novos_dados.get("data_nascimento", self.data_nascimento)
         self.sexo_paciente = novos_dados.get("sexo_paciente", self.sexo_paciente)
@@ -51,7 +56,6 @@ class Paciente:
         else:
             print(f'Paciente com ID {self.id_paciente} não encontrado.')
 
-
     def coletar_dados_para_edicao(self):
         print("Edite os dados do paciente. Pressione Enter para manter os dados atuais.")
         nome_paciente = input("Novo nome: ").strip()
@@ -68,4 +72,3 @@ class Paciente:
             novos_dados["sexo_paciente"] = sexo_paciente
 
         return novos_dados
-

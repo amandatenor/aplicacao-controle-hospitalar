@@ -1,5 +1,16 @@
-[2024-11-21] Procedimento inserido: 1, teste1, teste1
-[2024-11-21] Procedimento consultado: ('teste1', 'teste1')
-[2024-11-21] Procedimento editado: 1, TESTE1, TESTE1
-[2024-11-21] Procedimento consultado: ('TESTE1', 'TESTE1')
-[2024-11-21] Procedimento excluído: 1
+[22/11/2024 18:49:37] Procedimento inserido: 1, Radiografia, Exame de radiografia
+[22/11/2024 18:49:52] Procedimento consultado: ('Radiografia', 'Exame de radiografia')
+[22/11/2024 18:56:22] Consulta inserida: 1, Retorno exame de radiografia, Paciente: 1, Procedimento:['1'], Data: 26/11/2024
+[22/11/2024 19:05:13] Consulta inserida: 1, Retorno exame tumografia, Paciente: 2, Procedimento:['1'], Data: 22/11/2024
+[22/11/2024 19:10:45] Consulta inserida: 1, Retorno exame, Paciente: 1, Procedimento:['1'], Data: 22/11/2024
+[22/11/2024 19:17:46] Consulta consultada: ('1', "['1']", '22/11/2024', 'Retorno exame')
+[22/11/2024 19:21:39] Consulta consultada: ('1', "['1']", '22/11/2024', 'Retorno exame')
+[22/11/2024 19:26:24] Consulta consultada: ('1', "['1']", '22/11/2024', 'Retorno exame')
+[22/11/2024 19:30:23] Consulta consultada: ('1', "['1']", '22/11/2024', 'Retorno exame')
+[22/11/2024 19:33:54] Consulta inserida: 1, Retorno, Paciente: 1, Procedimento:['1'], Data: 22/11/2023
+[22/11/2024 19:34:09] Consulta consultada: ('1', "['1']", '22/11/2023', 'Retorno')
+[22/11/2024 19:41:28] Consulta consultada: ('1', "['1']", '22/11/2023', 'Retorno')
+[22/11/2024 19:42:05] Consulta consultada: ('Retorno', '1', ["['1']"], '22/11/2023')
+[22/11/2024 19:43:00] Consulta consultada: ('Retorno', '1', ["['1']"], '22/11/2023')
+[22/11/2024 19:45:46] Consulta consultada: ('Retorno', '1', ["['1']"], '22/11/2023')
+[22/11/2024 19:46:05] Consulta editada: 1, Exame, Paciente: 1, Data: 23/12/2024
