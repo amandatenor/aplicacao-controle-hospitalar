@@ -1,4 +1,4 @@
-# 🏥 Aplicativo de Hospital
+# 🏥 Controle Hospitalar
 
 ## Visão Geral
 Este aplicativo de hospital oferece um sistema de gerenciamento abrangente que permite aos usuários controlar entidades-chave: **Paciente**, **Procedimento** e **Consulta**. Com foco na facilidade de uso e no manuseio eficiente de dados, o aplicativo oferece funcionalidades para inserção, edição, exclusão e consulta dessas entidades. Além disso, mantém registros de todos os eventos para garantir rastreabilidade detalhada.
