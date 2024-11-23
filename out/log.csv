@@ -14,3 +14,7 @@
 [22/11/2024 19:43:00] Consulta consultada: ('Retorno', '1', ["['1']"], '22/11/2023')
 [22/11/2024 19:45:46] Consulta consultada: ('Retorno', '1', ["['1']"], '22/11/2023')
 [22/11/2024 19:46:05] Consulta editada: 1, Exame, Paciente: 1, Data: 23/12/2024
+[23/11/2024 03:12:16] Consulta inserida: 1, Retorno de exame, Paciente: 3, Procedimento:['1'], Data: 23/11/2024
+[23/11/2024 03:12:42] Paciente excluído: 3
+[23/11/2024 03:16:52] Consulta inserida: 1, Retorno da radiografia, Paciente: 2, Procedimento:['1'], Data: 23/11/2024
+[23/11/2024 03:17:00] Procedimento excluído: 1

@@ -42,7 +42,8 @@ class Armazenamento():
                 sexo = campos[3]
                 return nome, data_nascimento, sexo
 
-        return None
+        print('Paciente nao encontrado')
+        return None, None, None, None  
 
 
     def editar_paciente(self, id_paciente, nome_paciente=None, data_nascimento=None, sexo_paciente=None):
